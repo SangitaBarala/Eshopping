@@ -24,7 +24,7 @@
     <h1 style="font-family: 'Courier New'; color:chocolate; padding-top: 20px;">Brand HUES</h1>
     <h2 style="font-family: SimSun; color: white; padding: 20px;">"Trusting you in BRAND is all that matters..."</h2>
     <h3 style="font-weight: bold; color: white; padding: 30px;">EXHALE STYLE</h3>
-    <p style="color:white;">`b'coz its shop O'clock somewhere`</p>
+    <p style="color:white;">`because its shop O'clock somewhere`</p>
     <a href="master.blade.php">Shop Now</a>
 </div>
     <style>

@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
+Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
