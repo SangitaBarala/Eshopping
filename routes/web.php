@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('mainPage', function () {
+    return view('mainPage');
+});
+
 Auth::routes();
 
 Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
