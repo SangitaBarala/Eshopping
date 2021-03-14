@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\productController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Auth::routes();
 Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
 Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/cart',[App\Http\Controllers\orderController::class,'cart']);
+Route::get('/admin',[App\Http\Controllers\productController::class,'addProduct']);
+Route::get('/upload', [App\Http\Controllers\productController::class,'imgupload']);
