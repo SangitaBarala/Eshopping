@@ -70,15 +70,18 @@
 
     <h2>Product</h2>
     <p>Select the category of product</p>
+    <div class="dropdown">
+        <button type="button" class="btn btn-info  dropdown-toggle" data-toggle="dropdown">
+            Dropdown button
+        </button>
 
-        <p>{!! Form::select('companyname', array('' => 'Select a Company') + $listCompanies) !!} </p>
-
-        @foreach($istCompaniesId as $company)
-            @if(companyname->text === $listCompaniesId->value)
-                {!! Form::hidden('company_id', $listCompaniesId->value) !!}
-            @endif
-        @endforeach
-
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#summer">Summer collection</a>
+            <a class="dropdown-item" href="#winter">Winter collection</a>
+            <a class="dropdown-item" href="#handbags">Handbags</a>
+            <a class="dropdown-item" href="#boots">Boots </a>
+        </div>
+    </div>
     <form action="/upload"  method="get">
         <input type="text" name="product_name" placeholder="name">
         <input type="text" name="description" placeholder="description">

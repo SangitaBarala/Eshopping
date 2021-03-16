@@ -35,8 +35,7 @@
                         <a class="dropdown-item" href="#winter">Winter collection</a>
                         <a class="dropdown-item" href="#handbags">Handbags</a>
                         <a class="dropdown-item" href="#boots">Boots </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+
                     </div>
                 </li>
             </ul>
@@ -50,7 +49,51 @@
 </div>
 
 <section id="summer">
-    <ul id="autoWidth" class="cs-hidden">
+
+
+        <ul id="autoWidth" class="cs-hidden">
+            <!--5------------------------------------>
+            if (is_array($card) || is_object($card))
+            {
+            @foreach($card as $c)
+            <li class="item-e">
+                <!--box-slider--------------->
+                <div class="box">
+                    <!--img-box---------->
+                    <div class="slide-img">
+                        <img alt="5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSXcAqEm293FK2omhdwJuMNGQpUnUZuLjd4wdiDzoJY5asV0c_NmtdYEDyjHIocH55xwRatgg&usqp=CAc">
+                        <!--overlayer---------->
+                        <div class="overlay">
+                            <!--buy-btn------>
+                            <a href="#" class="buy-btn">Buy Now</a>
+                        </div>
+                    </div>
+                    <!--detail-box--------->
+                    <div class="detail-box2">
+                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
+                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
+                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
+                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
+                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
+                    </div>
+                    <div class="detail-box">
+                        <div class="type">
+                            <a href="#">${{$card->product_name}}</a>
+                            <span>New Arrival</span>
+                        </div>
+                        <!--price-------->
+                        <a href="#" class="price">${{$card->price}}</a>
+                    </div>
+                    <div class="buy-price">
+                        <h1><a href="#" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
+                    </div>
+                </div>
+            </li>
+            @endforeach}
+        </ul>
+
+
+            <ul id="autoWidth" class="cs-hidden">
         <!--5------------------------------------>
         <li class="item-e">
             <!--box-slider--------------->
