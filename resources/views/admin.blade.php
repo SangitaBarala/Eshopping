@@ -76,13 +76,18 @@
         </button>
 
         <div class="dropdown-menu">
+            @foreach($category_options as $c)
+                <option value="{{ $id }}">{{ $c }}</option>
+
+            @endforeach
             <a class="dropdown-item" href="#summer">Summer collection</a>
             <a class="dropdown-item" href="#winter">Winter collection</a>
             <a class="dropdown-item" href="#handbags">Handbags</a>
             <a class="dropdown-item" href="#boots">Boots </a>
         </div>
     </div>
-    <form action="/upload"  method="get">
+    <form action="/create/newProduct"  method="get">
+
         <input type="text" name="product_name" placeholder="name">
         <input type="text" name="description" placeholder="description">
         <input type="number" name="in_stock" placeholder="quantity available">

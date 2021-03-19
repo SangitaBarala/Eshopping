@@ -53,8 +53,7 @@
 
         <ul id="autoWidth" class="cs-hidden">
             <!--5------------------------------------>
-            if (is_array($card) || is_object($card))
-            {
+
             @foreach($card as $c)
             <li class="item-e">
                 <!--box-slider--------------->
@@ -78,18 +77,18 @@
                     </div>
                     <div class="detail-box">
                         <div class="type">
-                            <a href="#">${{$card->product_name}}</a>
+                            <a href="#">{{$c->product_name}}</a>
                             <span>New Arrival</span>
                         </div>
                         <!--price-------->
-                        <a href="#" class="price">${{$card->price}}</a>
+                        <a href="#" class="price">${{$c->price}}</a>
                     </div>
                     <div class="buy-price">
                         <h1><a href="#" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
                     </div>
                 </div>
             </li>
-            @endforeach}
+            @endforeach
         </ul>
 
 

@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class catagory extends Model
+class media extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'category_name'
-    ];
 
     public function product(){
         return $this->hasMany(products::class);

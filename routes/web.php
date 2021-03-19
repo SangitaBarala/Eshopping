@@ -29,6 +29,10 @@ Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/cart',[App\Http\Controllers\orderController::class,'cart']);
 Route::get('/admin',[App\Http\Controllers\productController::class,'addProduct']);
-Route::get('/mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
-Route::get('/upload', [App\Http\Controllers\productController::class,'imgupload']);
+Route::get('mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
+Route::get('/create/newProduct',[App\Http\Controllers\productController::class,'imgupload']);
+Route::get('/admin', function () {
 
+    $category_options = DB::table('category')->pluck('category_name','id');
+    return view('admin')->with(['category' => $category_options]);
+});
