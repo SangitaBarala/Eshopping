@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -69,23 +70,25 @@
 <div class="container">
 
     <h2>Product</h2>
-    <p>Select the category of product</p>
-    <div class="dropdown">
-        <button type="button" class="btn btn-info  dropdown-toggle" data-toggle="dropdown">
-            Dropdown button
-        </button>
 
-        <div class="dropdown-menu">
-            @foreach($category_options as $c)
-                <option value="{{ $id }}">{{ $c }}</option>
-
+    <form class="form-group" action="/dropdown" method="get">
+        <label for="category">Select Category:</label>
+        <select name="category" class="form-control" style="width:250px">
+            <option value="">--- Select Category ---</option>
+            @foreach ($category as $key => $value)
+                <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
             @endforeach
-            <a class="dropdown-item" href="#summer">Summer collection</a>
-            <a class="dropdown-item" href="#winter">Winter collection</a>
-            <a class="dropdown-item" href="#handbags">Handbags</a>
-            <a class="dropdown-item" href="#boots">Boots </a>
-        </div>
-    </div>
+        </select>
+    </form>
+    <script>
+        $(document).ready(function(){
+            $("#category{{$value}}").on('click', function(){
+                alert("clicked");
+            });
+        });
+
+    </script>
+
     <form action="/create/newProduct"  method="get">
 
         <input type="text" name="product_name" placeholder="name">
@@ -96,7 +99,7 @@
        <button type="submit" class="btn btn-primary">Add</button>
    </form>
 
-   <table class="table thead-dark table-striped table-hover">
+   <table class="table thead-dark table-striped table-hover " name="product">
        <thead>
        <tr>
            <th>Name</th>
@@ -111,7 +114,10 @@
        <ul style="list-style-type: none">
            <li>
        <tr>
-           <td></td>
+           <td name="product_name"></td>
+           <td name="product_description"></td>
+           <td name="_inStock"></td>
+           <td name="price"></td>
        </tr>
            </li>
        </ul>

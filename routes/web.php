@@ -31,8 +31,7 @@ Route::get('/cart',[App\Http\Controllers\orderController::class,'cart']);
 Route::get('/admin',[App\Http\Controllers\productController::class,'addProduct']);
 Route::get('mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
 Route::get('/create/newProduct',[App\Http\Controllers\productController::class,'imgupload']);
-Route::get('/admin', function () {
+Route::get('/admin',[App\Http\Controllers\categoriesController::class,'details']);
 
-    $category_options = DB::table('category')->pluck('category_name','id');
-    return view('admin')->with(['category' => $category_options]);
-});
+
+

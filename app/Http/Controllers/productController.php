@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\catagory;
+use App\Models\categories;
 use App\Models\products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+
 
 class productController extends Controller
 {
     //
     public function addProduct()
     {
-
         return view('admin');
     }
 
@@ -35,9 +36,6 @@ class productController extends Controller
         return view('admin');
     }
 
-    public function details(){
-        $category_options = category::All();
-        return view('admin',compact('category_options'));
-    }
+
 
 }
