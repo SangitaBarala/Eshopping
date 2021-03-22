@@ -17,4 +17,23 @@ class categoriesController extends Controller
         return view("admin", compact('category'));
     }
 
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            $products = products::where('category_id', $request->prod)->get();
+            if ($products) {
+                foreach ($products as $key => $product) {
+                    $output .= '<tr>' .
+                        '<td>' . $product->product_name . '</td>' .
+                        '<td>' . $product->product_description . '</td>' .
+                        '<td>' . $product->product_in_stock . '</td>' .
+                        '<td>' . $product->price . '</td>' .
+                        '</tr>';
+                }
+                return Response($output);
+            }
+        }
+
+    }
 }

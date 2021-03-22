@@ -31,6 +31,7 @@ Route::get('/cart',[App\Http\Controllers\orderController::class,'cart']);
 Route::get('/admin',[App\Http\Controllers\productController::class,'addProduct']);
 Route::get('mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
 Route::get('/create/newProduct',[App\Http\Controllers\productController::class,'imgupload']);
+Route::get('/search',[App\Http\Controllers\categoriesController::class,'search']);
 Route::get('/admin',[App\Http\Controllers\categoriesController::class,'details']);
 
 

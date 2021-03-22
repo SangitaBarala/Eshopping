@@ -4,6 +4,7 @@
     <title>Products</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -80,13 +81,21 @@
             @endforeach
         </select>
     </form>
-    <script>
-        $(document).ready(function(){
-            $("#category{{$value}}").on('click', function(){
-                alert("clicked");
+    <script type="text/javascript">
+        $('#category{{$value}}').on('click',function(){
+            $prod = $(this).val();
+            $.ajax({
+                type : 'get',
+                url : '{{URL::to('search')}}',
+                data:{'search':$prod},
+                success:function(data){
+                    $('tbody').html(data);
+                }
             });
-        });
-
+        })
+    </script>
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script>
 
     <form action="/create/newProduct"  method="get">
@@ -111,16 +120,7 @@
        </tr>
        </thead>
        <tbody>
-       <ul style="list-style-type: none">
-           <li>
-       <tr>
-           <td name="product_name"></td>
-           <td name="product_description"></td>
-           <td name="_inStock"></td>
-           <td name="price"></td>
-       </tr>
-           </li>
-       </ul>
+
 
        </tbody>
    </table>
