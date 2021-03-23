@@ -76,13 +76,13 @@
         <label for="category">Select Category:</label>
         <select name="category" class="form-control" style="width:250px">
             <option value="">--- Select Category ---</option>
-            @foreach ($category as $key => $value)
+            @foreach ($categories as $key => $value)
                 <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
             @endforeach
         </select>
     </form>
     <script type="text/javascript">
-        $('#category{{$value}}').on('click',function(){
+        $('#category1').on('click',function(){
             $prod = $(this).val();
             $.ajax({
                 type : 'get',
@@ -98,13 +98,14 @@
         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script>
 
-    <form action="/create/newProduct"  method="get">
+    <form action="/admin/product"  method="post" enctype="multipart/form-data">
+        {{csrf_field()}}
 
         <input type="text" name="product_name" placeholder="name">
         <input type="text" name="description" placeholder="description">
         <input type="number" name="in_stock" placeholder="quantity available">
         <input type="number" name="price" placeholder="$">
-        <!--<input type="file" id="image" name="image">-->
+        <input type="file" id="image" name="productImage">
        <button type="submit" class="btn btn-primary">Add</button>
    </form>
 
