@@ -25,7 +25,7 @@ class AdminController extends Controller
 
         $product = new products();
             $product->product_name = $name;
-            $product->category_id = '1';
+            $product->category_id = $request->category;
             $product->product_description = $description;
             $product->product_in_stock = $quantity;
             $product->price = $price;
