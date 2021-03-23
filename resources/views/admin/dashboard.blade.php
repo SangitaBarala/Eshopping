@@ -72,31 +72,7 @@
 
     <h2>Product</h2>
 
-    <form class="form-group" action="/dropdown" method="get">
-        <label for="category">Select Category:</label>
-        <select name="category" class="form-control" style="width:250px">
-            <option value="">--- Select Category ---</option>
-            @foreach ($categories as $key => $value)
-                <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
-            @endforeach
-        </select>
-    </form>
-    <script type="text/javascript">
-        $('#category1').on('click',function(){
-            $prod = $(this).val();
-            $.ajax({
-                type : 'get',
-                url : '{{URL::to('search')}}',
-                data:{'search':$prod},
-                success:function(data){
-                    $('tbody').html(data);
-                }
-            });
-        })
-    </script>
-    <script type="text/javascript">
-        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-    </script>
+
 
     <form action="/admin/product"  method="post" enctype="multipart/form-data">
         {{csrf_field()}}
@@ -106,6 +82,14 @@
         <input type="number" name="in_stock" placeholder="quantity available">
         <input type="number" name="price" placeholder="$">
         <input type="file" id="image" name="productImage">
+        <select name="category" class="form-control" style="width:250px">
+            <option value="">--- Select Category ---</option>
+            @foreach ($categories as $key => $value)
+                <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
+            @endforeach
+        </select>
+
+
        <button type="submit" class="btn btn-primary">Add</button>
    </form>
 
