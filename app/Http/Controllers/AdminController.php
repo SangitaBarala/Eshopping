@@ -21,12 +21,14 @@ class AdminController extends Controller
         return view('admin.dashboard')->with(['categories' => $categories, 'products' => $products]);
     }
 
+
     public function productDelete($id){
 
-        DB::table('products')->where('id', '=', $id)->delete();
+        $product = products::findOrFail($id);
+        $product->delete();
         return redirect('/admin');
-    }
 
+    }
 
 
     public function addProduct(Request $request){
@@ -45,42 +47,22 @@ class AdminController extends Controller
             $product->price = $price;
         $product->save();
 
-        request()->validate([
-            'productImages' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
 
-        $name = time().'.'.request()->productImages->getClientOriginalExtension();
-        $request->file('productImages')->storeAs('productImages', $name);
+
+
 
         $paths = array();
 
         foreach ($request->productImages as $images){
+
+            $name = time().'.'.$images->getClientOriginalExtension();
+
             $paths[] = array(
-                'path' => $images,
+                'path' => $images->storeAs('productImages', $name),
             );
         }
 
         $product->media()->createMany($paths);
         return redirect('/admin');
-    }
-
-    public function allProducts()
-    {
-
-            $output = "";
-            $products = products::all()->get();
-            if ($products) {
-                foreach ($products as $key => $product) {
-                    $output .= '<tr>' .
-                        '<td>' . $product->product_name . '</td>' .
-                        '<td>' . $product->product_description . '</td>' .
-                        '<td>' . $product->product_in_stock . '</td>' .
-                        '<td>' . $product->price . '</td>' .
-                        '</tr>';
-                }
-                return Response($output);
-            }
-
-
     }
 }

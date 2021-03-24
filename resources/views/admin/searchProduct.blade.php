@@ -70,60 +70,28 @@
 
 <div class="container">
     <h2>Product</h2>
-
-    <form method="GET"  role ='search' action="search">
-
-    <div class="input-group custom-search-form">
-        <input type="text" class="form-control" name="search" placeholder="Search...">
-        <span class="input-group-btn">
-            <button class="btn btn-default-sm" type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-        </span>
-    </div>
-    </form>
-
-    <form action="/admin/product"  method="post" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
-
-            <option value="">--- Select Category ---</option>
-            @foreach ($categories as $key => $value)
-                <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
-            @endforeach
-        </select>
-        <input type="text" name="product_name" placeholder="name" required>
-        <input type="text" name="description" placeholder="description" required>
-        <input type="number" name="in_stock" placeholder="quantity available" required>
-        <input type="number" name="price" placeholder="$" required>
-
-        <input type="file" id="image" name="productImages[]" multiple required>
-
-       <button type="submit" class="btn btn-primary">Add</button>
-   </form>
-
-   <table class="table thead-dark table-striped table-hover " name="product">
-       <thead>
-       <tr>
-           <th>Name</th>
-           <th>Description</th>
-           <th>Total in Stock</th>
-           <th>Price</th>
-           <th>Edit</th>
-       </tr>
-       </thead>
-       <tbody>
-       @foreach ($products as $key => $product)
-           <tr>
-               <td> {{$product->product_name}} </td>
-               <td> {{$product->product_description}} </td>
-               <td> {{$product->product_in_stock}} </td>
-               <td> {{$product->price}}</td>
-               <td><a href="{{route('delete',$product->id)}}" class="fa fa-trash"></a> </td>
-           </tr>
-       @endforeach
-       </tbody>
-   </table>
+    <table class="table thead-dark table-striped table-hover " name="product">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Total in Stock</th>
+            <th>Price</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($products as $key => $product)
+            <tr>
+                <td> {{$product->product_name}} </td>
+                <td> {{$product->product_description}} </td>
+                <td> {{$product->product_in_stock}} </td>
+                <td> {{$product->price}}</td>
+                <td><a href="{{route('delete',$product->id)}}" class="fa fa-trash"></a> </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
