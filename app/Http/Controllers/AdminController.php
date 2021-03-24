@@ -45,20 +45,19 @@ class AdminController extends Controller
             $product->price = $price;
         $product->save();
 
-        request()->validate([
-            'productImages' => 'required|image|mimes:jpeg,png,jpg,gif',
-        ]);
 
-        $name = time().'.'.request()->productImages->getClientOriginalExtension();
-        $request->file('productImages')->storeAs('productImages', $name);
 
         $paths = array();
 
         foreach ($request->productImages as $images){
+
+            $name = time().'.'.$images->getClientOriginalExtension();
+
             $paths[] = array(
-                'path' => $images,
+                'path' => $images->storeAs('productImages', $name),
             );
         }
+
 
         $product->media()->createMany($paths);
         return redirect('/admin');

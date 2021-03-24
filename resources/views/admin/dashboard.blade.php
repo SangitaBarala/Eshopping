@@ -74,7 +74,7 @@
         {{csrf_field()}}
         <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
 
-            <option value="">--- Select Category ---</option>
+            <option value="1">--- Select Category ---</option>
             @foreach ($categories as $key => $value)
                 <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
             @endforeach
@@ -84,7 +84,7 @@
         <input type="number" name="in_stock" placeholder="quantity available" required>
         <input type="number" name="price" placeholder="$" required>
 
-        <input type="file" id="image" name="productImages" multiple required>
+        <input type="file" id="image" name="productImages[]" multiple required>
 
        <button type="submit" class="btn btn-primary">Add</button>
    </form>
