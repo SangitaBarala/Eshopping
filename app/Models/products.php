@@ -10,19 +10,19 @@ class products extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
+        'image_id',
         'product_name',
         'product_description',
         'product_in_stock',
         'price',
-        'image_id',
-        'category_id',
     ];
-
+    protected $with = ['media'];
     public function category(){
-        return $this->belongsTo(category::class, category_id);
+        return $this->belongsTo(category::class, 'category_id');
 
     }
     public function media(){
-        return $this->belongsTo(media::class, media_id);
+        return $this->hasMany(media::class, 'product_id');
     }
 }

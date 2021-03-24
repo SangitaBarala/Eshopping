@@ -11,10 +11,7 @@ class mainPageController extends Controller
     //
     public function dispalyCard()
     {
-        $card = DB::table('products')
-            ->Join('category', 'category_id', '=', 'category.id')
-            ->get();
-
+        $card = products::all();
         return view('mainPage', compact('card'));
     }
 }
