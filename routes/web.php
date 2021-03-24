@@ -37,7 +37,7 @@ Route::get("detail/{id}",[ProductController::class,'detail']);
 // END PRODUCT ROUTES
 
 // CART ROUTES
-Route::get('/cart',[App\Http\Controllers\productController::class,'cart']);
+Route::get('/cart',[App\Http\Controllers\productController::class,'cart'])->name('cart');
 Route::get('/add_to_cart/{products}',[App\Http\Controllers\productController::class,'addToCart']);
 
 // END CART ROUTES

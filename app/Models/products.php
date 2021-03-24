@@ -17,12 +17,12 @@ class products extends Model
         'product_in_stock',
         'price',
     ];
-
+    protected $with = ['media'];
     public function category(){
         return $this->belongsTo(category::class, 'category_id');
 
     }
     public function media(){
-        return $this->belongsTo(media::class, 'media_id');
+        return $this->hasMany(media::class, 'product_id');
     }
 }

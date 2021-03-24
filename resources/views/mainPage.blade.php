@@ -54,7 +54,7 @@
             <li class="item-e">
                 <div class="box">
                     <div class="slide-img">
-                        <img alt="5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSXcAqEm293FK2omhdwJuMNGQpUnUZuLjd4wdiDzoJY5asV0c_NmtdYEDyjHIocH55xwRatgg&usqp=CAc">
+                        <img alt="5" src="{{$c->media[0]->path ?? '#'}}">
                         <div class="overlay">
                             <a  class="buy-btn">Buy Now</a>
                         </div>
@@ -76,7 +76,7 @@
                         <a href="#" class="price">${{$c->price}}</a>
                     </div>
                     <div class="buy-price">
-                        <h1><a href="#" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
+                        <h1><a href="/add_to_cart/{{$c->id}}" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
                     </div>
                 </div>
             </li>
@@ -113,7 +113,7 @@
                     <a href="#" class="price">$65</a>
                 </div>
                 <div class="buy-price">
-                    <h1><a href="{{route('/add_to_cart')}}" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
+                    <h1><a href="#" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
                 </div>
             </div>
         </li>

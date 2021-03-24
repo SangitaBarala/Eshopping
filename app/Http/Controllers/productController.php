@@ -41,7 +41,7 @@ class productController extends Controller
         return view('product')->with('products', products::all());
     }
 
-    // ADD TO CART
+    // zzCART
     public function cart(){
         return view('cart');
     }
