@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Orders</a>
@@ -42,29 +42,21 @@
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button><br>&nbsp;
-                <h4><i class="fa fa-shopping-cart" style="font-size:36px"></i>Cart(0)</h4>
+                <a href="#"><h4><i class="fa fa-shopping-cart" style="font-size:36px"></i>Cart(0)</h4></a>
             </form>
         </div>
     </nav>
 </div>
 
 <section id="summer">
-
-
         <ul id="autoWidth" class="cs-hidden">
-            <!--5------------------------------------>
-
             @foreach($card as $c)
             <li class="item-e">
-                <!--box-slider--------------->
                 <div class="box">
-                    <!--img-box---------->
                     <div class="slide-img">
                         <img alt="5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSXcAqEm293FK2omhdwJuMNGQpUnUZuLjd4wdiDzoJY5asV0c_NmtdYEDyjHIocH55xwRatgg&usqp=CAc">
-                        <!--overlayer---------->
                         <div class="overlay">
-                            <!--buy-btn------>
-                            <a href="#" class="buy-btn">Buy Now</a>
+                            <a  class="buy-btn">Buy Now</a>
                         </div>
                     </div>
                     <!--detail-box--------->
@@ -90,8 +82,6 @@
             </li>
             @endforeach
         </ul>
-
-
             <ul id="autoWidth" class="cs-hidden">
         <!--5------------------------------------>
         <li class="item-e">
@@ -123,7 +113,7 @@
                     <a href="#" class="price">$65</a>
                 </div>
                 <div class="buy-price">
-                    <h1><a href="#" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
+                    <h1><a href="{{route('/add_to_cart')}}" class="cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i>Add to cart</a></h1>
                 </div>
             </div>
         </li>

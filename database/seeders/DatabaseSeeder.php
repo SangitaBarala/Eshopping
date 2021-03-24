@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        DB::table('products')->insert([
+            [
+                'category_id'=>'1',
+                'media_id'=>'1',
+                'name'=>'pink floral',
+                'product_description'=>'summer dress',
+                'product_in_stock',
+                'price'=>'200'
+            ]
+        ]);
     }
 }
