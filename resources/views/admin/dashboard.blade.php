@@ -72,12 +72,6 @@
     <h2>Product</h2>
     <form action="/admin/product"  method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="text" name="product_name" placeholder="name" required>
-        <input type="text" name="description" placeholder="description" required>
-        <input type="number" name="in_stock" placeholder="quantity available" required>
-        <input type="number" name="price" placeholder="$" required>
-
-        <input type="file" id="image" name="productImages" multiple required>
         <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
 
             <option value="">--- Select Category ---</option>
@@ -85,7 +79,13 @@
                 <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
             @endforeach
         </select>
-        <br>
+        <input type="text" name="product_name" placeholder="name" required>
+        <input type="text" name="description" placeholder="description" required>
+        <input type="number" name="in_stock" placeholder="quantity available" required>
+        <input type="number" name="price" placeholder="$" required>
+
+        <input type="file" id="image" name="productImages" multiple required>
+
        <button type="submit" class="btn btn-primary">Add</button>
    </form>
 

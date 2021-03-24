@@ -28,6 +28,7 @@ class AdminController extends Controller
     }
 
 
+
     public function addProduct(Request $request){
 
         $name = $_POST['product_name'];
@@ -45,7 +46,7 @@ class AdminController extends Controller
         $product->save();
 
         request()->validate([
-            'productImages' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'productImages' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         $name = time().'.'.request()->productImages->getClientOriginalExtension();
