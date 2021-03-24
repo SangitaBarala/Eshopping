@@ -9,7 +9,11 @@ class media extends Model
 {
     use HasFactory;
 
+    //protected $fillable = ["path"];
+
     public function product(){
+
         return $this->hasMany(products::class);
+
     }
 }

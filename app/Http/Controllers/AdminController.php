@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\categories;
+use App\Models\media;
 use App\Models\products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -13,8 +15,18 @@ class AdminController extends Controller
     public function dashboard(){
 
         $categories = categories::pluck('id', 'category_name');
-        return view('admin.dashboard')->with(['categories' => $categories]);
+
+        $products = products::orderBy('created_at', 'desc')->get();
+
+        return view('admin.dashboard')->with(['categories' => $categories, 'products' => $products]);
     }
+
+    public function productDelete($id){
+
+        DB::table('products')->where('id', '=', $id)->delete();
+        return redirect('/admin');
+    }
+
 
     public function addProduct(Request $request){
 
@@ -23,21 +35,51 @@ class AdminController extends Controller
         $quantity = $_POST['in_stock'];
         $price = $_POST['price'];
 
+
         $product = new products();
             $product->product_name = $name;
             $product->category_id = $request->category;
             $product->product_description = $description;
             $product->product_in_stock = $quantity;
             $product->price = $price;
-            $product->media_id = '1';
         $product->save();
 
-        // TODO
-        // 1. Validate if the file is sent from the form
-        // 2. After storing the image store the name in the media table using proper relationships
+        request()->validate([
+            'productImages' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
-        $file_name =  $request->file('productImage')->store($name);
+        $name = time().'.'.request()->productImages->getClientOriginalExtension();
+        $request->file('productImages')->storeAs('productImages', $name);
 
+        $paths = array();
+
+        foreach ($request->productImages as $images){
+            $paths[] = array(
+                'path' => $images,
+            );
+        }
+
+        $product->media()->createMany($paths);
         return redirect('/admin');
+    }
+
+    public function allProducts()
+    {
+
+            $output = "";
+            $products = products::all()->get();
+            if ($products) {
+                foreach ($products as $key => $product) {
+                    $output .= '<tr>' .
+                        '<td>' . $product->product_name . '</td>' .
+                        '<td>' . $product->product_description . '</td>' .
+                        '<td>' . $product->product_in_stock . '</td>' .
+                        '<td>' . $product->price . '</td>' .
+                        '</tr>';
+                }
+                return Response($output);
+            }
+
+
     }
 }

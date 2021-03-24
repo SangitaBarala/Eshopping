@@ -28,6 +28,8 @@ Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard']);
 Route::post('/admin/product', [App\Http\Controllers\AdminController::class, 'addProduct']);
+Route::get('delete/{id}', [App\Http\Controllers\AdminController::class, 'productDelete'])->name('delete');
+
 
 // END ADMIN ROUTES
 
@@ -46,7 +48,6 @@ Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
 Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
-Route::get('/create/newProduct',[App\Http\Controllers\productController::class,'imgupload']);
 Route::get('/search',[App\Http\Controllers\categoriesController::class,'search']);
 
 

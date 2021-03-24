@@ -72,12 +72,14 @@
     <h2>Product</h2>
     <form action="/admin/product"  method="post" enctype="multipart/form-data">
         {{csrf_field()}}
-        <input type="text" name="product_name" placeholder="name">
-        <input type="text" name="description" placeholder="description">
-        <input type="number" name="in_stock" placeholder="quantity available">
-        <input type="number" name="price" placeholder="$">
-        <input type="file" id="image" name="productImage"> <br>
+        <input type="text" name="product_name" placeholder="name" required>
+        <input type="text" name="description" placeholder="description" required>
+        <input type="number" name="in_stock" placeholder="quantity available" required>
+        <input type="number" name="price" placeholder="$" required>
+
+        <input type="file" id="image" name="productImages" multiple required>
         <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
+
             <option value="">--- Select Category ---</option>
             @foreach ($categories as $key => $value)
                 <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
@@ -94,9 +96,20 @@
            <th>Description</th>
            <th>Total in Stock</th>
            <th>Price</th>
-           <th>Images</th>
+           <th>Edit</th>
        </tr>
        </thead>
+       <tbody>
+       @foreach ($products as $key => $product)
+           <tr>
+               <td> {{$product->product_name}} </td>
+               <td> {{$product->product_description}} </td>
+               <td> {{$product->product_in_stock}} </td>
+               <td> {{$product->price}}</td>
+               <td><a href="{{route('delete',$product->id)}}" class="fa fa-trash"></a> </td>
+           </tr>
+       @endforeach
+       </tbody>
    </table>
 </div>
 </body>

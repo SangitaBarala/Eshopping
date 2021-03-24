@@ -11,7 +11,6 @@ class products extends Model
 
     protected $fillable = [
         'category_id',
-        'image_id',
         'product_name',
         'product_description',
         'product_in_stock',
@@ -23,6 +22,8 @@ class products extends Model
 
     }
     public function media(){
+
         return $this->hasMany(media::class, 'product_id');
+
     }
 }
