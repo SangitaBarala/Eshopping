@@ -87,7 +87,7 @@
         {{csrf_field()}}
         <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
 
-            <option value="">--- Select Category ---</option>
+            <option value="1">--- Select Category ---</option>
             @foreach ($categories as $key => $value)
                 <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
             @endforeach

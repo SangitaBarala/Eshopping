@@ -47,10 +47,6 @@ class AdminController extends Controller
             $product->price = $price;
         $product->save();
 
-
-
-
-
         $paths = array();
 
         foreach ($request->productImages as $images){
