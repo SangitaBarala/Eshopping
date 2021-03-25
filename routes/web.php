@@ -26,9 +26,10 @@ Auth::routes();
 
 // ADMIN ROUTES
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard']);
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
 Route::post('/admin/product', [App\Http\Controllers\AdminController::class, 'addProduct']);
 Route::get('delete/{id}', [App\Http\Controllers\AdminController::class, 'productDelete'])->name('delete');
+Route::get('/search', [App\Http\Controllers\AdminController::class, 'searchProduct']);
 
 
 // END ADMIN ROUTES
@@ -36,19 +37,21 @@ Route::get('delete/{id}', [App\Http\Controllers\AdminController::class, 'product
 // PRODUCT ROUTES
 Route::get('/product',[App\Http\Controllers\productController::class, 'allProducts']);
 Route::get("detail/{id}",[ProductController::class,'detail']);
+
 // END PRODUCT ROUTES
 
 // CART ROUTES
-Route::get('/cart',[App\Http\Controllers\productController::class,'cart'])->name('cart');
-Route::get('/add_to_cart/{products}',[App\Http\Controllers\productController::class,'addToCart']);
+Route::get('/cart',[App\Http\Controllers\productController::class,'index'])->name('cart.index')->middleware('Auth');
+Route::get('/add_to_cart/{products}',[App\Http\Controllers\productController::class,'addToCart'])->name('cart.add')->middleware('Auth');
+
 
 // END CART ROUTES
 
 Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
 Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('mainPage',[App\Http\Controllers\mainPageController::class,'dispalyCard']);
-Route::get('/search',[App\Http\Controllers\categoriesController::class,'search']);
+Route::get('/mainPage',[App\Http\Controllers\mainPageController::class,'displayCard']);
+
 
 
 

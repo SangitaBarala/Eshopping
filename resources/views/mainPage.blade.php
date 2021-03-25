@@ -26,32 +26,84 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Orders</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Categories
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#summer">Summer collection</a>
-                        <a class="dropdown-item" href="#winter">Winter collection</a>
-                        <a class="dropdown-item" href="#handbags">Handbags</a>
-                        <a class="dropdown-item" href="#boots">Boots </a>
+                <form action="/selectCategory" method="get">
 
-                    </div>
-                </li>
+                    <select name="category" class="form-control" style="width:250px; margin-top: 10px;">
+
+                        <option value="1">--- Select Category ---</option>
+                        @foreach ($categories as $key => $value)
+                            <option value="{{ $key }}" id="category{{$key}}">{{ $value->category_name }}</option>
+                @endforeach
+                    </select>
+                </form>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button><br>&nbsp;
-                <a href="#"><h4><i class="fa fa-shopping-cart" style="font-size:36px"></i>Cart(0)</h4></a>
+            <form action="product_search" method="GET" role="search">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search Product"> <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="fa fa-search"></span>
+                    </button>
+
+                    </span></div>
             </form>
+                <a href="#"><h5><i class="fa fa-shopping-cart" style="font-size:20px"></i>Cart(0)</h5></a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a style="color: chocolate; font-size: 18px" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a style="color: chocolate; font-size: 18px" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
         </div>
     </nav>
 </div>
 
 <section id="summer">
         <ul id="autoWidth" class="cs-hidden">
+
+                <div class="container">
+                <div class="row">
             @foreach($card as $c)
-            <li class="item-e">
+                <div class="col-sm-3">
+
+            <li class="item-e" style="width: 25%">
                 <div class="box">
                     <div class="slide-img">
                         <img alt="5" src="{{$c->media[0]->path ?? '#'}}">
@@ -80,7 +132,11 @@
                     </div>
                 </div>
             </li>
+                </div>
             @endforeach
+                </div>
+                </div>
+
         </ul>
             <ul id="autoWidth" class="cs-hidden">
         <!--5------------------------------------>

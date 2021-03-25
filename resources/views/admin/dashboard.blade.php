@@ -71,16 +71,15 @@
 <div class="container">
     <h2>Product</h2>
 
-    <form method="GET"  role ='search' action="search">
+    <form action="/search" method="GET" role="search">
 
-    <div class="input-group custom-search-form">
-        <input type="text" class="form-control" name="search" placeholder="Search...">
-        <span class="input-group-btn">
-            <button class="btn btn-default-sm" type="submit">
-                <i class="fa fa-search"></i>
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" placeholder="Search Product"> <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
             </button>
         </span>
-    </div>
+        </div>
     </form>
 
     <form action="/admin/product"  method="post" enctype="multipart/form-data">

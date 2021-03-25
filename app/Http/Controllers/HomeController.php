@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         if(Auth::user()->isAdmin == true){
 
-            return view('/admin.dashboard');
+            return view('admin.dashboard');
         }
         else {
             return view('home');

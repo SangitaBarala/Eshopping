@@ -81,7 +81,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($products as $key => $product)
+        @foreach ($product as $key => $product)
             <tr>
                 <td> {{$product->product_name}} </td>
                 <td> {{$product->product_description}} </td>

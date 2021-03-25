@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="_token" content="{{ csrf_token() }}">
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -140,13 +140,40 @@
         <span class="bar"></span>
         <span class="bar"></span>
     </a>
-    <div class="navbar-links">
-        <ul>
-            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-            <li><a href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a></li>
-            <li><a href="{{ route('register') }}"><i class="fa fa-registered"></i>Register</a></li>
-        </ul>
-    </div>
+    <ul class="navbar-nav ml-auto">
+        <!-- Authentication Links -->
+        @guest
+            @if (Route::has('login'))
+                <li class="nav-item">
+                    <a style="color: white; font-size: 18px" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+            @endif
+
+            @if (Route::has('register'))
+                <li class="nav-item">
+                    <a style="color: white; font-size: 18px" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @endif
+        @else
+            <li class="nav-item dropdown">
+                <a style="color: white; font-size: 18px" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        @endguest
+    </ul>
 </div>
 <div class="main">
     <h2>"Fashion is an instant language that speaks for you..."</h2>
