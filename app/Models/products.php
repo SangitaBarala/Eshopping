@@ -17,13 +17,20 @@ class products extends Model
         'price',
     ];
     protected $with = ['media'];
-    public function category(){
-        return $this->belongsTo(category::class, 'category_id');
+
+    public function category()
+    {
+        return $this->belongsTo(categories::class, 'category_id');
 
     }
-    public function media(){
+    public function media()
+    {
+        return $this->hasMany(media::class, 'product_id' );
+    }
 
-        return $this->hasMany(media::class, 'product_id');
+    public function wishList()
+    {
+        return $this->belongsTo(WishList::class);
 
     }
 }

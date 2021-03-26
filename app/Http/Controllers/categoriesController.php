@@ -12,7 +12,7 @@ class categoriesController extends Controller
     //
     public function details()
     {
-        $category = categories::pluck('id', 'category_name');
+        $category = categories::all();
 
         return view("admin", compact('category'));
     }

@@ -88,7 +88,7 @@
 
             <option value="1">--- Select Category ---</option>
             @foreach ($categories as $key => $value)
-                <option value="{{ $value }}" id="category{{$value}}">{{ $key }}</option>
+                <option value="{{ $key }}" id="category{{$key}}">{{ $value->category_name }}</option>
             @endforeach
         </select>
         <input type="text" name="product_name" placeholder="name" required>

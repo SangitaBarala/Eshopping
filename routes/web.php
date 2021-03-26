@@ -36,22 +36,23 @@ Route::get('/search', [App\Http\Controllers\AdminController::class, 'searchProdu
 
 // PRODUCT ROUTES
 Route::get('/product',[App\Http\Controllers\productController::class, 'allProducts']);
-Route::get("detail/{id}",[ProductController::class,'detail']);
+
 
 // END PRODUCT ROUTES
 
 // CART ROUTES
-Route::get('/cart',[App\Http\Controllers\productController::class,'index'])->name('cart.index')->middleware('Auth');
-Route::get('/add_to_cart/{products}',[App\Http\Controllers\productController::class,'addToCart'])->name('cart.add')->middleware('Auth');
+
 
 
 // END CART ROUTES
 
-Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
-Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
+//Route::post('/master',[App\Http\Controllers\myController::class,'createUser']);
+//Route::get('/list',[App\Http\Controllers\myController::class,'listUsers']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/mainPage',[App\Http\Controllers\mainPageController::class,'displayCard']);
 
+//WISH LIST ROUTE
 
+Route::get('/add_to_wishList/{id}',[App\Http\Controllers\mainPageController::class,'addToWishList'])->middleware('auth');
 
 

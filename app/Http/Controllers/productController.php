@@ -11,12 +11,6 @@ use Illuminate\Support\Facades\DB;
 class productController extends Controller
 {
     //
-
-    public function addProduct()
-    {
-        return view('admin');
-    }
-
     public function allProducts(){
         return view('product')->with('products', products::all());
     }
