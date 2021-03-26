@@ -33,4 +33,9 @@ class products extends Model
         return $this->belongsTo(WishList::class);
 
     }
+
+    public function rating()
+    {
+        return $this->hasMany(Ratings::class);
+    }
 }

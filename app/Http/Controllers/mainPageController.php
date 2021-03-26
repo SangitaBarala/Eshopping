@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\categories;
 use App\Models\products;
+use App\Models\Ratings;
 use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class mainPageController extends Controller
 {
@@ -30,5 +30,13 @@ class mainPageController extends Controller
         $wish_Item->save();
 
         return redirect('/mainPage');
+    }
+
+    public function productStar (Request $request, products $product) {
+        $rating = new Ratings();
+        $rating->user_id = Auth::id();
+        $rating->rating = $request->input('star');
+        $product->rating()->save($rating);
+        return redirect()->back();
     }
 }

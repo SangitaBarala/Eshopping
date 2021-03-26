@@ -9,6 +9,52 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        div.stars {
+            display: inline-block;
+        }
+
+        input.star { display: none; }
+
+        label.star {
+            float: left;
+            padding: 10px;
+            font-size: 10px;
+            color: #444;
+            transition: all .2s;
+        }
+
+        input.star:checked ~ label.star:before {
+            content: '\f005';
+            color: #e74c3c;
+            transition: all .25s;
+        }
+
+        input.star-5:checked ~ label.star:before {
+            color: #e74c3c;
+            text-shadow: 0 0 5px #7f8c8d;
+        }
+
+        input.star-1:checked ~ label.star:before { color: #F62; }
+
+        label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+        label.star:before {
+            content: '\f006';
+            font-family: FontAwesome;
+        }
+
+
+        .horline > li:not(:last-child):after {
+            content: " |";
+        }
+        .horline > li {
+            font-weight: bold;
+            color: #ff7e1a;
+
+        }
+    </style>
 </head>
 <body>
 <div id="fixedTop">
@@ -110,13 +156,28 @@
                         </div>
                     </div>
                     <!--detail-box--------->
-                    <div class="detail-box2">
-                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
-                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
-                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
-                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
-                        <i class="fa fa-star-o" style="font-size:28px;color:yellow"></i>
-                    </div>
+                    <form class="form-horizontal productstars" action="{{route('productStar', $c->id)}}" id="addStar" method="POST">
+                        {{ csrf_field() }}
+                        <div class="form-group required">
+                            <div class="col-sm-12">
+                                <input class="star star-5" value="5" id="star-5" type="radio" name="star"/>
+                                <label class="star star-5" for="star-5"></label>
+                                <input class="star star-4" value="4" id="star-4" type="radio" name="star"/>
+                                <label class="star star-4" for="star-4"></label>
+                                <input class="star star-3" value="3" id="star-3" type="radio" name="star"/>
+                                <label class="star star-3" for="star-3"></label>
+                                <input class="star star-2" value="2" id="star-2" type="radio" name="star"/>
+                                <label class="star star-2" for="star-2"></label>
+                                <input class="star star-1" value="1" id="star-1" type="radio" name="star"/>
+                                <label class="star star-1" for="star-1"></label>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                        $('#addStar').change('.star', function(e) {
+                            $(this).submit();
+                        });
+                    </script>
                     <div class="detail-box">
                         <div class="type">
                             <a href="#">{{$c->product_name}}</a>

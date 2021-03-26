@@ -54,5 +54,11 @@ Route::get('/mainPage',[App\Http\Controllers\mainPageController::class,'displayC
 //WISH LIST ROUTE
 
 Route::get('/add_to_wishList/{id}',[App\Http\Controllers\mainPageController::class,'addToWishList'])->middleware('auth');
+Route::post('/rating/{product}', [App\Http\Controllers\mainPageController::class, 'productStar'])->name('productStar');
+
+
+
+
+
 
 
